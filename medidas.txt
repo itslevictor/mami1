@@ -1,0 +1,23 @@
+AguaEsq:
+Posição - 0,303
+W = 54 H = 69
+
+mar:
+Posição - 0,371
+W = 748 H - 26
+Barco:
+posição - 273,57
+W = 498 H = 197
+
+Ponte:
+posição - 110,318
+W = 616 H = 78
+
+BrutusPonte:
+Posição = 110,210
+W = 86 H = 110
+
+PopeyePonte:
+Posição = 190,225
+W = 78 H = 93 
+

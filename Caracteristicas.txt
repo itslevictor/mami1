@@ -1,0 +1,417 @@
+//Variaveis globais jogo
+int gameT = 0;
+int tela = 0;
+int pontos = 0;
+float pBonus = 0;
+//Variaveis globais Popeye
+int posP = 4;
+boolean ataqueP = false;
+boolean moveP = false;
+int contAP = 0;
+int contMP = 0;
+boolean danoP = false;
+int tempP = 0;
+int vidaP =0;
+
+//Função Popeye
+void popeye() {
+  if (tela == 1) {
+    if (contAP == 30&&ataqueP==true) {
+      ataqueP = false;
+      contAP = -15;
+    }
+    if (contMP == 45) {
+      moveP = false;
+      contMP = 0;
+    }
+    if (keyPressed == true&&(moveP==false||ataqueP==false)&&danoP ==false) {
+      if (key ==CODED) {
+        if (keyCode == LEFT&&moveP==false&&posB<posP&&ataqueP==false&&(posP>=1&&posP<=4)) {
+          posP-=1;
+          moveP = true;
+        } else if (keyCode == RIGHT&&moveP==false&&ataqueP==false) {
+          posP+=1;
+          moveP = true;
+        }
+        keyCode = DELETE;
+      }
+    } else {
+      if ((key == 'a'||key=='A')&&ataqueP==false&&contAP==0&&danoP ==false&&(posP>=1&&posP<=4)) {
+        ataqueP=true;
+        key = 'p';
+      }
+    }
+    if (danoP == true)
+      posP+=1;
+    if (posP<=1)
+      posP = 1;
+    else if (posP>=5) {
+      rect(700, 340, 30, 30);
+      rect(602, 210, 86, 110);
+      tempP+=1;
+      danoB = 0;
+      ataqueB=0;
+      tempB=0;
+      if (tempP>=120) {
+        moveB=false;
+        posP=4;
+        posB=3;
+        danoB = 0;
+        ataqueB=0;
+        tempB=0;
+        tempP=0;
+        vidaP+=1;
+      }
+    }
+    if ((ataqueB==2&&contAB==10&&posB==posP)||(ataqueB==6&&contAB==10&&posB==posP))
+      danoP = true;
+    else
+      danoP = false;
+  }
+}
+
+//variaveis Globais do Brutus
+int tempB = 0;
+int posB = 3;
+int tipAB = 0;
+int ataqueB = 0;
+boolean moveB = false;
+int contAB = 0;
+int contMB = 0; 
+int danoB = 0;
+
+//Função Brutus
+void brutus() {
+  if (tela == 1) {
+    //ataqueBrutus
+    if (gameT == 1&&tipAB==0) {
+      if (tempB >= 121) {
+        ataqueB = 1;
+        tempB=0;
+      }
+      if (contAB == 45&&ataqueB==1) {
+        ataqueB = 2;
+        contAB = 0;
+        tempB = 0;
+      } else if (contAB == 45&&ataqueB==2) {
+        ataqueB = 3;
+        contAB=0;
+        tempB = 0;
+      } else if (contAB == 45&&ataqueB==3) {
+        ataqueB = 0;
+        contAB=0;
+        tempB = 0;
+        tipAB=1;
+      }
+    }
+    //ataque2Brutus
+    if (posB>=1&&posB<=4) {
+      if (gameT == 1&&tipAB==1) {
+        if (tempB >= 120) {
+          ataqueB = 1;
+          tempB=0;
+        }
+        if (contAB == 45&&ataqueB==1) {
+          ataqueB = 2;
+          contAB = 0;
+          tempB = 0;
+        } else if (contAB == 45&&ataqueB==2) {
+          ataqueB = 3;
+          contAB=0;
+          tempB = 0;
+        } else if (contAB == 45&&ataqueB==3) {
+          ataqueB = 4;
+          contAB=0;
+          tempB = 0;
+        }
+        if (contAB == 35&&ataqueB==4) {
+          ataqueB = 5;
+          contAB = 0;
+          tempB = 0;
+        } else if (contAB == 35&&ataqueB==5) {
+          ataqueB = 6;
+          contAB=0;
+          tempB = 0;
+        } else if (contAB == 35&&ataqueB==6) {
+          ataqueB = 7;
+          contAB=0;
+          tempB = 0;
+        } else if (contAB == 35&&ataqueB==7) {
+          ataqueB = 0;
+          contAB=0;
+          tempB = 0;
+          tipAB=0;
+        }
+      }
+      //ataque Gtip2
+      if (gameT == 2&&tipAB==0) {
+        if (tempB >= 101) {
+          ataqueB = 1;
+          tempB=0;
+        }
+        if (contAB == 35&&ataqueB==1) {
+          ataqueB = 2;
+          contAB = 0;
+          tempB = 0;
+        } else if (contAB == 35&&ataqueB==2) {
+          ataqueB = 3;
+          contAB=0;
+          tempB = 0;
+        } else if (contAB == 35&&ataqueB==3) {
+          ataqueB = 0;
+          contAB=0;
+          tempB = 0;
+          tipAB=1;
+        }
+      }
+      //ataque2 Gt 2Brutus
+      if (posB>=1&&posB<=4) {
+        if (gameT == 2&&tipAB==1) {
+          if (tempB >= 100) {
+            ataqueB = 1;
+            tempB=0;
+          }
+          if (contAB == 35&&ataqueB==1) {
+            ataqueB = 2;
+            contAB = 0;
+            tempB = 0;
+          } else if (contAB == 35&&ataqueB==2) {
+            ataqueB = 3;
+            contAB=0;
+            tempB = 0;
+          } else if (contAB == 35&&ataqueB==3) {
+            ataqueB = 4;
+            contAB=0;
+            tempB = 0;
+          }
+          if (contAB == 25&&ataqueB==4) {
+            ataqueB = 5;
+            contAB = 0;
+            tempB = 0;
+          } else if (contAB == 25&&ataqueB==5) {
+            ataqueB = 6;
+            contAB=0;
+            tempB = 0;
+          } else if (contAB == 25&&ataqueB==6) {
+            ataqueB = 7;
+            contAB=0;
+            tempB = 0;
+          } else if (contAB == 25&&ataqueB==7) {
+            ataqueB = 0;
+            contAB=0;
+            tempB = 0;
+            tipAB=0;
+          }
+        }
+      }
+      //movimentoBrutus
+      if (contMB == 60) {
+        moveB = false;
+        contMB = 0;
+      }
+      if (posP-posB!=1&&(posP>posB)&&moveB==false&&(ataqueP == true && posP == posB&&contAP==10)==false&&(posB<=4)) {
+        posB +=1;
+        moveB = true;
+      } else if (posP-posB==1&&(posP>posB)&&moveB==false&&(ataqueP == true && posP == posB&&contAP==10)==false&&contMP==0&&(posB<=4)) {
+        posB +=1;
+        moveB = true;
+      } 
+      if (danoB == 2) {
+        danoB = 0;
+        posB-=1;
+        contMB = -30;
+        moveB = true;
+      }
+      //tempo e danoBrutus
+      if (ataqueP == true && posP == posB&&contAP==10) {
+        danoB+=1;
+        pontos+=1;
+        pBonus+=0.5;
+      }
+      tempB+=1;
+    } else {
+      danoB = 0;
+      ataqueB=0;
+      ataqueP=true;
+      moveP=true;
+      posB=-1;
+      if (posB<=0&&tempB==120) {
+        if(posLatinha == -1)
+          posLatinha=0;
+        else if (posLatinha == 0)
+          posLatinha=3;
+        else if (posLatinha == 1)
+          posLatinha=4;
+        else if (posLatinha == 2)
+          posLatinha=5;
+        posB=3;
+        posP=4;
+        ataqueP=false;
+        moveP=false;
+        contMP=0;
+        contMB=0;
+        contAP=0;
+        contAB=0;
+        ataqueB = 0;
+        tempB=0;
+        pontos+=int(pBonus);
+        pBonus=0;
+      }
+      tempB+=1;
+    }
+  }
+}
+int posLatinha = -1;
+int framesLatinha = 0;
+void desenha() {
+  if (tela == 1) {
+    //fixo
+    fill(255);
+    rect(110, 318, 616, 78);
+    fill(150, 50, 50);
+    rect(273, 57, 498, 198);
+    fill(10, 40, 230);
+    rect(0, 370, 748, 26);
+
+    //Latinha Esp e contato
+    fill(111);
+    if (posLatinha == 3) {
+      rect(130, 130, 30, 30);
+      framesLatinha+=1;
+      if (framesLatinha ==30) {
+        posLatinha = 1;
+        framesLatinha=0;
+      }
+    } else if (posLatinha == 4) {
+      rect(130, 130, 30, 30);
+      framesLatinha+=1;
+      if (framesLatinha ==30) {
+        posLatinha = 2;
+        framesLatinha=0;
+      }
+    } else if (posLatinha == 5) {
+      rect(30, 30, 30, 30);
+      framesLatinha+=1;
+      if (framesLatinha ==60) {
+        posLatinha = 6;
+        framesLatinha=0;
+      }
+    } else if (posLatinha == 6) {
+      rect(30, 60, 30, 30);
+      framesLatinha+=1;
+      if (framesLatinha ==60) {
+        posLatinha = 7;
+        framesLatinha=0;
+      }
+    } else if (posLatinha == 7) {
+      rect(30, 90, 30, 30);
+      framesLatinha+=1;
+      if (framesLatinha ==60) {
+        posLatinha = 8;
+        framesLatinha=0;
+      }
+    } else if (posLatinha == 8) {
+      rect(30, 90, 30, 30);
+      framesLatinha+=1;
+      if (framesLatinha ==60) {
+        posLatinha = 9;
+        framesLatinha=0;
+      }
+    } else if (posLatinha == 9&&posP==1) {
+      rect(30, 90, 30, 30);
+      framesLatinha+=1;
+      if (framesLatinha ==60) {
+        posLatinha = 10;
+        framesLatinha=0;
+      }
+    } else if (posLatinha == 9&&posP!=1) {
+      rect(30, 90, 30, 30);
+      framesLatinha+=1;
+      if (framesLatinha ==60) {
+        posLatinha = 0;
+        framesLatinha=0;
+      }
+    }
+    if (posLatinha==0||posLatinha==2||posLatinha==1)
+      rect(273+(posLatinha*15+32*posLatinha+1), 114, 24, 27);
+    //Brutus
+    fill(255);
+    if (posB>=1&&posB<=4)
+      rect((posB*86)+(posB-1)*86, 210, 86, 110);
+    if (moveB == true)
+      contMB+=1;
+    if (ataqueB>=1)
+      contAB+=1;
+    //popeye
+    if (posP>=1&&posP<=4)
+      rect((posP+1)*86+(posP-1)*78, 227, 78, 93);
+    if (moveP == true)
+      contMP+=1;
+    if (ataqueP==true||contAP<0)
+      contAP+=1;
+    //ataquepopeye
+    fill(255);
+    if (posP>=0&&posP<=4) {
+      if (ataqueP == true&&posB>=0&&(posP>=0&&posP<=4))
+        rect(160*posP-30, 200, 59, 39);
+    }
+    //ataqueBrutus
+    if (posB>=1&&posB<=4) {
+      if (ataqueB == 2||ataqueB==6)
+        rect((160*posB)-20, 160, 59, 39);
+      else if (ataqueB == 1||ataqueB==3||ataqueB==5||ataqueB==7)
+        rect((160*posB)-40, 180, 59, 39);
+    }
+  }
+    if (tela == 1){
+      rect(390,70,66,42);
+    }
+}
+//controle do jogo total
+void jogo() {
+  if (vidaP!=3&&tela==1) {
+    desenha();
+    popeye();
+    brutus();
+  } else if (vidaP==3&&tela==1) {
+    tela=0;
+    vidaP=0;
+    pontos = 0;
+    pBonus = 0;
+  }
+  if (tela==0) {
+    textSize(48);
+    text("GAME A", 20, 140);
+    text("GAME B", 20, 240);
+    rect(250, 100, 50, 50);
+    rect(250, 200, 50, 50);
+    if (mouseX>=250&&mouseX<=300&&mouseY>=100&&mouseY<=150){
+      fill(140,100,100);
+      rect(250, 100, 50, 50);
+      fill(255);
+    }
+    else if (mouseX>=250&&mouseX<=300&&mouseY>=200&&mouseY<=250){
+      fill(140,100,100);
+      rect(250, 200, 50, 50);
+      fill(255);
+    }      
+    if (mouseX>=250&&mouseX<=300&&mouseY>=100&&mouseY<=150&&(mousePressed == true&&mouseButton==LEFT)) {
+      tela=1;
+      gameT=1;
+    } else if (mouseX>=250&&mouseX<=300&&mouseY>=200&&mouseY<=250&&(mousePressed == true&&mouseButton==LEFT)) {
+      tela=1;
+      gameT=2;
+    }
+  }
+}
+//segunda execução
+void setup() {
+  background(0);
+  size(748, 396);
+}
+//terceira em diante
+void draw() {
+  background(0);
+  jogo();
+  println(pontos, pBonus);
+}
